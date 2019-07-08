@@ -11,9 +11,28 @@ Write 3 different ways of safely unwrapping and printing the value of `userName`
 
 - Method one: Check for nil and force unwrap
 
+var userName: String? 
+if userName == nil {
+print("No name")
+
+} else {
+print("\(userName!)")
+}
+
 - Method two: Optional binding
 
+var userName: String?
+if let userName1 = userName {
+print("\(userName1)")
+} else {
+print("No name")
+}
+
 - Method three: Nil coalescing
+
+var userName: String? 
+var username1 = userName ?? "No name"
+print(username1)
 
 
 ## Question 2
@@ -21,6 +40,11 @@ Write 3 different ways of safely unwrapping and printing the value of `userName`
 Given optional string `backgroundColor`, write code that safely unwraps and prints it. If backgroundColor is nil, give it a value.
 
 `var backgroundColor: String?`
+
+var backgroundColor: String? 
+var backgroundColor2 = backgroundColor ?? "White"
+print(backgroundColor2)
+
 
 
 ## Question 3
@@ -31,7 +55,14 @@ Given an optional width and an optional height of a rectangle, write code that c
 var width: Double?
 var height: Double?
 ```
+var length: Double? = 5.0
+var height: Double? = 4.0
 
+if let length2 = length, let height2 = height {
+print(length2 * height2)
+} else {
+print("No value")
+}
 
 ## Question 4
 
@@ -42,7 +73,15 @@ var name: String?
 var age: Int?
 var height: Double?
 ```
+var name: String? = "chris"
+var age: Int? = 3
+var height: Double? = 4.5
 
+if let name2 = name, let age2 = age, let height2 = height {
+print("My name is \(name2), my age is \(age2) and my height is \(height2) feet")
+} else {
+print("No value")
+}
 
 ## Question 5
 
@@ -53,11 +92,26 @@ var firstName: String = "Johnny"
 var middleName: String?
 var lastName: String = "Stone"
 ```
+var firstName: String = "Johnny"
+var middleName: String?
+var lastName: String = "Stone"
+var fullName = ""
+
+if middleName == nil {
+print("\(firstName) \(lastName)")
+} else {
+fullName = ("\(firstName) \(middleName!) \(lastName)")
+}
+print(fullName)
 
 
 ## Question 6
 
 Write code that adds 15 to `myIntString`, then prints the sum. Use the `Int()` constructor which returns an optional Int `(Int?)`.
+
+let myIntString = "35"
+print(Int(myIntString)! + 15)
+
 
 `let myIntString = "35"`
 
@@ -85,6 +139,16 @@ if Bool.random() {
  tuple = (5, 3)
 }
 ```
+var tuple: (Int, Int)?
+if Bool.random() {
+tuple = (5, 3)
+}
+if tuple == nil {
+print("nil")
+} else {
+print(tuple!)
+}
+
 
 
 ## Question 9
@@ -97,6 +161,17 @@ if Bool.random() {
  myInt = 5
 }
 ```
+var myInt: Int?
+if Bool.random() {
+myInt = 5
+}
+
+if myInt == nil {
+print("nil")
+} else {
+print(myInt!*2)
+}
+
 
 
 ## Question 10
@@ -111,11 +186,18 @@ if Bool.random() {
  myDouble = 12
 }
 ```
+var myDouble: Double?
+let doubleTwo: Double = 5
+if myDouble == nil {
+print("nil")
+} else {
+print(myDouble!*doubleTwo)
+}
 
 
 ## Question 11
 
-Determine if the variable contains a Boolean or nil value. If nil set the variable to false, else keep it true.
+Determine if the variable contains a Boolean or nil value. If nil, set the variable to false, else keep it true.
 
 ```swift
 var isTheGreatest: Bool?
@@ -124,6 +206,15 @@ if Bool.random() {
  isTheGreatest = true
 }
 ```
+var isTheGreatest: Bool? 
+if Bool.random() {
+isTheGreatest = true
+}
+if isTheGreatest == nil {
+print(false)
+} else {
+print(true)
+}
 
 
 ## Question 12
@@ -141,7 +232,30 @@ if Bool.random() {
  myTuple.3 = 10
 }
 ```
+var myTuple: (Int?, Int?, Int?, Int?)
+var sum = 0
+if Bool.random() {
+myTuple.0 = 5
+myTuple.2 = 14
+} else {
+myTuple.1 = 9
+myTuple.3 = 10
+}
+if myTuple.0 != nil {
+sum += myTuple.0!
+if myTuple.1 != nil {
+sum += myTuple.1!
+}else {
+if myTuple.2 != nil {
+sum += myTuple.2!
 
+if myTuple.3 != nil {
+sum += myTuple.3!
+}
+}
+}
+}
+print(sum)
 
 ## Question 13
 
@@ -195,6 +309,37 @@ var evolutionaryStone: String?
 pokemon = starterPokemon()
 evolutionaryStone = eStone()
 ```
+let pokemon: String?
+var evolutionaryStone: String?
+pokemon = starterPokemon()
+evolutionaryStone = eStone()
+if let check = pokemon {
+if let check2 = evolutionaryStone {
+if check == "Pikachu" && check2 == "Electric" {
+print("Use \(check2) stone to evolve \(check)")
+} else if check == "Pikachu" && check2 != "Electric"{
+print("You can NOT use \(check2) stone to evolve \(check)")
+}
+if check == "Bulbasaur" && check2 == "Grass" {
+print("Use \(check2) stone to evolve \(check)")
+} else if check == "Bulbasaur" && check2 != "Grass"{
+print("You can NOT use \(check2) stone to evolve \(check)")
+}
+if check == "Charmander" && check2 == "Fire" {
+print("Use \(check2) stone to evolve \(check)")
+}else if check == "Charmander" && check2 != "Fire"{
+print("You can NOT use \(check2) stone to evolve \(check)")
+}
+if check == "Squirtle" && check2 == "Water" {
+print("Use \(check2) stone to evolve \(check)")
+}else if check == "Squirtle" && check2 != "Water"{
+print("You can NOT use \(check2) stone to evolve \(check)")
+}
+if check == "Not a Pokemon" && check2 == "No Stone" {
+print("You cant use \(check2) stone to evolve \(check)")
+}
+}
+}
 
 
 ## Question 14
@@ -208,7 +353,18 @@ if Bool.random() {
  numberOfPeople = 108
 }
 ```
+var numberOfPeople: Int?
 
+if Bool.random() {
+numberOfPeople = 108
+}
+if let numberOfPeople2 = numberOfPeople  {
+if numberOfPeople2 % 2 == 0 {
+print("\(numberOfPeople2) is even")
+} else {
+print("\(numberOfPeople2) is odd")
+}
+}
 
 ## Question 15
 
@@ -222,6 +378,21 @@ for i in 0..<20 {
 }
 ```
 
+var someNumbers: [Int?] = []
+
+for i in 0..<20 {
+someNumbers.append(Bool.random() ? i : nil)
+}
+var multiply = 1
+for num in someNumbers {
+if let num = num {
+multiply = multiply * num
+
+}
+}
+print(multiply)
+
+
 
 ## Question 16
 
@@ -232,6 +403,16 @@ let poorlyFormattedCityNames: [String?] = ["new york", "BOSTON", nil, "chicago",
 
 Output: ["New York", "Boston", "Chicago", "Los Angeles", "Dallas"]
 ```
+let poorlyFormattedCityNames: [String?] = ["new york", "BOSTON", nil, "chicago", nil, "los angeles", nil, "Dallas",]
+var city2 = [String]()
+for city in poorlyFormattedCityNames where city != nil {
+
+city2.append(city!.capitalized)
+
+
+
+}
+print(city2)
 
 
 ## Question 17
@@ -245,6 +426,22 @@ for _ in 0..<20 {
  aBunchOfNumbers.append(Bool.random() ? Int(arc4random_uniform(102)) : nil)
 }
 ```
+var aBunchOfNumbers: [Int?] = []
+
+for _ in 0..<20 {
+aBunchOfNumbers.append(Bool.random() ? Int(arc4random_uniform(102)) : nil)
+}
+var aBunchofNumbers2 = [0]
+for num in aBunchOfNumbers {
+if let num = num {
+if num % 2 == 0 {
+aBunchofNumbers2 += [num]
+}
+
+
+}
+}
+print(aBunchofNumbers2)
 
 
 ## Question 18
@@ -252,6 +449,13 @@ for _ in 0..<20 {
 Given the following array of zip codes as strings, write code that turns them into an array of Ints.
 
 `let zipCodeStrings = ["11377", "11101", "11373", "10014", "10003", "11223"]`
+
+let zipCodeStrings = ["11377", "11101", "11373", "10014", "10003", "11223"]
+var empty = [Int]()
+for zipcode in zipCodeStrings {
+empty.append((Int(zipcode)!))
+}
+print(empty)
 
 
 ## Question 19
@@ -265,6 +469,22 @@ Some students were asked some questions about their favorite foods and colors an
 - Create a new array of type `[(String, String, String)]` that contains the students with both favorite colors and foods.
 
 `let studentInfo: [(String, String?, String?)] = [("Bill", "Burgers", "Blue"), ("Rita", nil, "Red"), ("Peter", "Pizza", "Purple"), ("Sarah", "Sandwiches", nil), ("Jeff", nil, nil), ("Lucy", "Leftovers", "Lilac"), ("Mike", "Meat", "Mauve"), ("Gemma", nil, "Green")]`
+
+let studentInfo: [(String, String?, String?)] = [("Bill", "Burgers", "Blue"), ("Rita", nil, "Red"), ("Peter", "Pizza", "Purple"), ("Sarah", "Sandwiches", nil), ("Jeff", nil, nil), ("Lucy", "Leftovers", "Lilac"), ("Mike", "Meat", "Mauve"), ("Gemma", nil, "Green")]
+
+var FavoriteFoodAndColor = [String]()
+for info in studentInfo {
+if info.2 == nil {
+print("\(info.0) does not have a favorite color")
+}
+if info.1 == nil  {
+print("\(info.0) does not have a favorite food")
+}
+if info.2 != nil && info.1 != nil {
+FavoriteFoodAndColor.append("\(info.0) does have a favorite food and color")
+}
+}
+print(FavoriteFoodAndColor)
 
 
 ## Question 20
